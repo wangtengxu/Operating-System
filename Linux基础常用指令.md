@@ -270,46 +270,45 @@ top [选项]
     -n：与-b搭配，指定需要进行几次top输出，重定向时常用
     -p：指定PID，监控特定进程
 ```
-
-//tuxiang
+![picture](https://github.com/wangtengxu/database/blob/master/picture/top.jpg)
 * 第一行：概况
-    HH:mm:ss：当前的系统时间。
-    up xxx days, HH:mm：从本次开机到现在经过的时间。
-    x user：当前有几个用户登录到该机器。
-    load average：系统1分钟、5分钟、15分钟内的平均负载值
+    * HH:mm:ss：当前的系统时间。
+    * up xxx days, HH:mm：从本次开机到现在经过的时间。
+    * x user：当前有几个用户登录到该机器。
+    * load average：系统1分钟、5分钟、15分钟内的平均负载值
 * 第二行：进程计数（Tasks）
-    total：进程总数。
-    running：正在运行的进程数，对应状态TASK_RUNNING。
-    sleeping：睡眠的进程数，对应状态TASK_INTERRUPTIBLE和TASK_UNINTERRUPTIBLE。
-    stopped：停止的进程数，对应状态TASK_STOPPED。
-    zombie：僵尸进程数，对应状态TASK_ZOMBIE。
+    * total：进程总数。
+    * running：正在运行的进程数，对应状态TASK_RUNNING。
+    * sleeping：睡眠的进程数，对应状态TASK_INTERRUPTIBLE和TASK_UNINTERRUPTIBLE。
+    * stopped：停止的进程数，对应状态TASK_STOPPED。
+    * zombie：僵尸进程数，对应状态TASK_ZOMBIE。
 * 第三行：CPU使用率（%Cpu(s)）
-    us：进程在用户空间（user）消耗的CPU时间占比，不包含调整过优先级的进程。
-    sy：进程在内核空间（system）消耗的CPU时间占比。
-    ni：调整过用户态优先级的（niced）进程的CPU时间占比。
-    id：空闲的（idle）CPU时间占比。
-    wa：等待（wait）I/O完成的CPU时间占比。
-    hi：处理硬中断（hardware interrupt）的CPU时间占比。
-    si：处理软中断（software interrupt）的CPU时间占比。
-    st：当Linux系统是在虚拟机中运行时，等待CPU资源的时间（steal time）占比。
+    * us：进程在用户空间（user）消耗的CPU时间占比，不包含调整过优先级的进程。
+    * sy：进程在内核空间（system）消耗的CPU时间占比。
+    * ni：调整过用户态优先级的（niced）进程的CPU时间占比。
+    * id：空闲的（idle）CPU时间占比。
+    * wa：等待（wait）I/O完成的CPU时间占比。
+    * hi：处理硬中断（hardware interrupt）的CPU时间占比。
+    * si：处理软中断（software interrupt）的CPU时间占比。
+    * st：当Linux系统是在虚拟机中运行时，等待CPU资源的时间（steal time）占比。
 * 第四、五行：物理内存和交换空间（Mem/Swap）以物理内存为例。free命令也会打印出类似的信息。
-    total：内存总量。
-    free：空闲内存量。
-    used：使用中的内存量。
-    buff/cache：缓存和page cache占用的内存量。
+    * total：内存总量。
+    * free：空闲内存量。
+    * used：使用中的内存量。
+    * buff/cache：缓存和page cache占用的内存量。
 * 进程详细信息
-    PID：进程ID。
-    USER：进程所有者的用户名。
-    PR：从系统内核角度看的进程调度优先级。
-    NI：进程的nice值，即从用户空间角度看的进程优先级。值越低，优先级越高。
-    VIRT：进程申请使用的虚拟内存量。
-    RES：进程使用的驻留内存（即未被swap out的内存）量。
-    SHR：进程使用的共享内存量。
-    S：进程状态。R=running，S=interruptible sleeping，D=uninterruptible sleeping，T=stopped，Z=zombie。
-    %CPU：进程在一个更新周期内占用的CPU时间比例。
-    %MEM：进程占用的物理内存比例。
-    TIME+：进程创建后至今占用的CPU时间长度。
-    COMMAND：运行进程使用的命令。
+    * PID：进程ID。
+    * USER：进程所有者的用户名。
+    * PR：从系统内核角度看的进程调度优先级。
+    * NI：进程的nice值，即从用户空间角度看的进程优先级。值越低，优先级越高。
+    * VIRT：进程申请使用的虚拟内存量。
+    * RES：进程使用的驻留内存（即未被swap out的内存）量。
+    * SHR：进程使用的共享内存量。
+    * S：进程状态。R=running，S=interruptible sleeping，D=uninterruptible sleeping，T=stopped，Z=zombie。
+    * %CPU：进程在一个更新周期内占用的CPU时间比例。
+    * %MEM：进程占用的物理内存比例。
+    * TIME+：进程创建后至今占用的CPU时间长度。
+    * COMMAND：运行进程使用的命令。
 top模式下的命令：
 * ?：显示可用的命令
 * P：以CPU使用情况排序
@@ -349,6 +348,7 @@ free [选项]
     -t：列出物理内存与swap的汇总情况    
 ```
 [free详细说明](https://fixatom.com/linux-free-cmd-buffers-and-cached/)
+
 ![picture](https://github.com/wangtengxu/database/blob/master/picture/free.jpg)
 * buffers：主要缓存dentry和inode等元数据
 * cached：主要缓存文件内容，即page cache
@@ -459,7 +459,8 @@ netstat [选项]
     -i：显示网络接口列表，可以配合ifconfig一起分析
     -s：打印网络统计数据，包括某个协议下的收发包数量
 ```
-![picture](https://github.com/wangtengxu/database/blob/master/picture/netstat.jpg)
+    ![picture](https://github.com/wangtengxu/database/blob/master/picture/netstat.jpg)
+    
 * Active Internet connections（w/o servers）：网络相关的连接
     * Recv-Q：接收队列(已接收还未递交给应用)
     * Send-Q：发送队列(接收方未确认的数据)
@@ -498,12 +499,14 @@ sudo tcpdump -i lo tcp port 9877
 
 ## 9.网络请求：curl
 
+
 # 五.开发及调试
 ## 1.编辑器：vim
 
 
 ## 2.编译器：gcc和g++
-[程序编译过程详解](https://www.cnblogs.com/CarpenterLee/p/5994681.html)
+    [程序编译过程详解](https://www.cnblogs.com/CarpenterLee/p/5994681.html)
+
 使用方法
 ```
 gcc/g++ [选项] 源文件
@@ -593,6 +596,8 @@ gdb命令：
 ## 8.跟踪进程栈：pstack
 
 ## 9.进程内存映射：pmap
+
+
 # 六.其他
 ## 1.终止进程：kill
 
