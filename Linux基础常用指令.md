@@ -1,6 +1,6 @@
 # 一.文件管理
 ## 1.文件查找：find
-### 使用方法
+使用方法
 ```
 find [查找目录] [查找条件]
 
@@ -54,6 +54,7 @@ tar [-z] [xv] [-f 解压包名] [-C 解压路径]
 使用方法
 ```
 nl [-bnw] 文件
+  nl -b a 包含了空格
 ```
 ## 2.文本查找：grep
 使用方法
@@ -317,47 +318,54 @@ top模式下的命令：
 * q：退出
 * 1：多核情况下切换CPU
 %Cpu(s)后面的“wa”表示I/O wait，过高说明长时间等待I/O，I/O存在瓶颈
-
-3.打开文件查询：lsof
-
+## 3.打开文件查询：lsof  
+查找应用程序打开的文件的名称和数目，可用于查找出某个特定应用程序将日志数据记录到何处，或者正在跟踪某个问题。
 使用方法
-
+```
 lsof [选项]
 
 选项：
-    -i：-i:端口号查看端口被占用的情况
+    -filename：显示打开指定文件的所有进程
+    -i：端口号查看端口被占用的情况
     -u：后跟用户名查看具体用户打开的文件
     -p：后跟PID查看指定进程打开的文件
     +d：后跟目录查看指定目录下被进程打开的文件，"+D"递归
-4.内存使用量：free
-
+```
+示例
+```
+#1.查看22端口现在运行的情况 
+lsof -i :22
+COMMAND  PID USER   FD   TYPE DEVICE SIZE NODE NAME
+sshd    1409 root    3u  IPv6   5678       TCP *:ssh (LISTEN)
+```
+## 4.内存使用量：free
+查看内存使用情况
 使用方法
-
+```
 free [选项]
 
 选项：
     -b|-k|-m|-g：单位
     -t：列出物理内存与swap的汇总情况    
+```
+//tupian
 
-
-buffers：主要缓存dentry和inode等元数据
-cached：主要缓存文件内容，即page cache
-- buffers/cache：实际使用的内存。used-buffers-cached
-+ buffers/cache：可用内存。free+buffers+cached（在内存紧张时，buffers和cached可以回收）
-详细结果说明
-
-5.shell进程的资源限制：ulimit
-
+* buffers：主要缓存dentry和inode等元数据
+* cached：主要缓存文件内容，即page cache
+* - buffers/cache：实际使用的内存。used-buffers-cached
+* + buffers/cache：可用内存。free+buffers+cached（在内存紧张时，buffers和cached可以回收）
+## 5.shell进程的资源限制：ulimit
 使用方法
-
+```
 ulimit [选项]       #查看
 ulimit [选项] 新值  #修改
 
 选项：
     -a：列出shell进程的所有资源限制情况（-a命令会列出查看某一资源限制的选项参数）
     ...
-使用ulimit修改资源限制只会对当前终端环境有效，如果想永久生效，可以修改文件/etc/security/limits.conf，该文件的内容如下；
-
+```
+使用ulimit修改资源限制只会对当前终端环境有效，如果想永久生效，可以修改文件/etc/security/limits.conf，该文件的内容如下：
+```
 # /etc/security/limits.conf
 #
 #Each line describes a limit for a user in the form:
@@ -414,8 +422,9 @@ ulimit [选项] 新值  #修改
 #@student        -       maxlogins       4
 
 # End of file
+```
 示例
-
+```
 root@068ca8da6d06:/# ulimit -a
 core file size          (blocks, -c) 0
 data seg size           (kbytes, -d) unlimited
@@ -433,12 +442,11 @@ cpu time               (seconds, -t) unlimited
 max user processes              (-u) unlimited
 virtual memory          (kbytes, -v) unlimited
 file locks                      (-x) unlimited
-四.网络工具
-
-1.网卡配置：ifconfig
-
-2.查看当前网络连接：netstat
-
+```
+# 四.网络工具
+## 1.网卡配置：ifconfig
+## 2.查看当前网络连接：netstat
+```
 netstat [选项]
 
 选项：
@@ -450,58 +458,57 @@ netstat [选项]
     -p：添加一列，显示网络服务进程的PID（需要root权限）
     -i：显示网络接口列表，可以配合ifconfig一起分析
     -s：打印网络统计数据，包括某个协议下的收发包数量
+```
 
+//tupian
 
-Active Internet connections（w/o servers）：网络相关的连接
-Recv-Q：接收队列(已接收还未递交给应用)
-Send-Q：发送队列(接收方未确认的数据)
-Local Address：本地IP(主机):端口(服务名)
-Foreign Address：远端IP:端口
-Recv-Q和Send-Q通常应该为0，如果长时间不为0可能存在问题
-Active UNIX domain sockets（w/o servers）：本地相关的套接字
-RefCnt：连接到此socket的进程数
-Flags：连接标识
-Type：socket访问的类型
-Path：连接到此socket的相关程序的路径
-netstat的10个基本用法
+* Active Internet connections（w/o servers）：网络相关的连接
+    * Recv-Q：接收队列(已接收还未递交给应用)
+    * Send-Q：发送队列(接收方未确认的数据)
+    * Local Address：本地IP(主机):端口(服务名)
+    * Foreign Address：远端IP:端口
+    * Recv-Q和Send-Q通常应该为0，如果长时间不为0可能存在问题
+* Active UNIX domain sockets（w/o servers）：本地相关的套接字
+    * RefCnt：连接到此socket的进程数
+    * Flags：连接标识
+    * Type：socket访问的类型
+    * Path：连接到此socket的相关程序的路径
+## 3.查看路由表：route
 
-3.查看路由表：route
+## 4.检查网络连通性：ping
 
-4.检查网络连通性：ping
+## 5.转发路径：traceroute
 
-5.转发路径：traceroute
+## 6.网络Debug分析：nc
 
-6.网络Debug分析：nc
-
-7.命令行抓包：tcpdump
-
+## 7.命令行抓包：tcpdump
+```
 使用方法
 
 sudo tcpdump [选项] ...
 
 选项：
     -D/-i：查看/指定网卡
+```
 示例
-
+```
 #抓取本地9877号端口的TCP数据包
 sudo tcpdump -i lo tcp port 9877
-下图为tcp回射服务器，客户端分别键入"hello"和“world”时，使用tcpdump抓取到的数据包
+```
+## 8.域名解析工具：dig
+
+## 9.网络请求：curl
+
+# 五.开发及调试
+## 1.编辑器：vim
 
 
-8.域名解析工具：dig
-
-9.网络请求：curl
-
-五.开发及调试
-
-1.编辑器：vim
-
-2.编译器：gcc和g++
+## 2.编译器：gcc和g++
+//弄链接
 
 C程序的编译过程
-
 使用方法
-
+```
 gcc/g++ [选项] 源文件
 
 选项：
@@ -519,10 +526,10 @@ gcc/g++ [选项] 源文件
         1. gcc/g++ -c 源文件 -o 目标文件名
         2. ar -crv 静态链接库名.a 目标文件名
     -l库名 -L 目录：引入链接库，-L指定查找该库的目录。如-lm表示引入libm.so
-3.调试工具：gdb
-
+```
+## 3.调试工具：gdb
 使用方法
-
+```
 #第一步：得到可执行文件
 gcc/g++ -o 可执行文件 -g 源文件
 
@@ -576,37 +583,37 @@ gdb命令：
             h：2字节
             w：4字节（默认）
             g：8字节
-4.查看依赖库：ldd
+```
+[gdb安装和使用入门](https://blog.csdn.net/misskissC/article/details/37727771?depth_1-utm_source=distribute.pc_relevant.none-task&utm_source=distribute.pc_relevant.none-task)
+## 4.查看依赖库：ldd
 
-5.二进制文件分析：objdump
+## 5.二进制文件分析：objdump
 
-6.ELF文件格式分析：readelf
+## 6.ELF文件格式分析：readelf
 
-7.跟踪进程中系统调用：strace
+## 7.跟踪进程中系统调用：strace
 
-8.跟踪进程栈：pstack
+## 8.跟踪进程栈：pstack
 
-9.进程内存映射：pmap
+## 9.进程内存映射：pmap
+# 六.其他
+## 1.终止进程：kill
 
-六.其他
-
-1.终止进程：kill
-
-2.修改文件权限：chmod
-
+## 2.修改文件权限：chmod
 w权限不具有删除文件的能力
 目录的x权限表示能否进入目录
 使用方法
-
+```
 chmod [选项] [u|g|o|a][+|-][r|w|x] 文件或目录
 chmod [选项] 权限的数字表示 文件或目录
 
 选项：
     -R：递归式的修改
-3.创建链接：ln
+```
+## 3.创建链接：ln
 
-4.显示文件尾：tail
+## 4.显示文件尾：tail
 
-5.版本控制：git
+## 5.版本控制：git
 
-6.设置别名：alias
+## 6.设置别名：alias
