@@ -459,7 +459,7 @@ netstat [选项]
     -i：显示网络接口列表，可以配合ifconfig一起分析
     -s：打印网络统计数据，包括某个协议下的收发包数量
 ```
-    ![picture](https://github.com/wangtengxu/database/blob/master/picture/netstat.jpg)
+![picture](https://github.com/wangtengxu/database/blob/master/picture/netstat.jpg)
     
 * Active Internet connections（w/o servers）：网络相关的连接
     * Recv-Q：接收队列(已接收还未递交给应用)
@@ -472,7 +472,9 @@ netstat [选项]
     * Flags：连接标识
     * Type：socket访问的类型
     * Path：连接到此socket的相关程序的路径
+
 [netstat十个常用情形](https://linux.cn/article-2434-1.html)
+
 ## 3.查看路由表：route
 
 ## 4.检查网络连通性：ping
