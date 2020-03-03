@@ -234,7 +234,7 @@ ps -ef    #aux会截断COMMAND列，-ef不会。aux是BSD风格，-ef是System V
 ps axjf   #以"进程树"的方式显示所有进程
 ps -lA    #输出格式同ps -l
 ```
-//tupian1
+![picture](https://github.com/wangtengxu/database/blob/master/picture/ps%20-l.jpg)
 * F：进程标志，说明进程的权限
     4：root权限
     1：仅能fork而不能exec
@@ -251,7 +251,7 @@ ps -lA    #输出格式同ps -l
 * TTY：进程运行的终端机
 * TIME：进程用掉的CPU时间
 
-//tupian2
+![picture](https://github.com/wangtengxu/database/blob/master/picture/ps%20aux.jpg)
 * USER：进程所属用户
 * %CPU/%MEM：进程消耗的CPU百分比和内存百分比
 * VSZ：进程用掉的虚拟内存(KB)
@@ -348,8 +348,8 @@ free [选项]
     -b|-k|-m|-g：单位
     -t：列出物理内存与swap的汇总情况    
 ```
-//tupian
-
+[free详细说明](https://fixatom.com/linux-free-cmd-buffers-and-cached/)
+![picture](https://github.com/wangtengxu/database/blob/master/picture/free.jpg)
 * buffers：主要缓存dentry和inode等元数据
 * cached：主要缓存文件内容，即page cache
 * - buffers/cache：实际使用的内存。used-buffers-cached
@@ -459,9 +459,7 @@ netstat [选项]
     -i：显示网络接口列表，可以配合ifconfig一起分析
     -s：打印网络统计数据，包括某个协议下的收发包数量
 ```
-
-//tupian
-
+![picture](https://github.com/wangtengxu/database/blob/master/picture/netstat.jpg)
 * Active Internet connections（w/o servers）：网络相关的连接
     * Recv-Q：接收队列(已接收还未递交给应用)
     * Send-Q：发送队列(接收方未确认的数据)
@@ -473,6 +471,7 @@ netstat [选项]
     * Flags：连接标识
     * Type：socket访问的类型
     * Path：连接到此socket的相关程序的路径
+[netstat十个常用情形](https://linux.cn/article-2434-1.html)
 ## 3.查看路由表：route
 
 ## 4.检查网络连通性：ping
@@ -504,9 +503,7 @@ sudo tcpdump -i lo tcp port 9877
 
 
 ## 2.编译器：gcc和g++
-//弄链接
-
-C程序的编译过程
+[程序编译过程详解](https://www.cnblogs.com/CarpenterLee/p/5994681.html)
 使用方法
 ```
 gcc/g++ [选项] 源文件
